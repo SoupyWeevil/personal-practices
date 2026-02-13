@@ -1,8 +1,9 @@
-/********************************
-* Name: Grace Brown             *
-* Last Edited: 25 Jan 26        *
-* Program: Rock Paper Scissors  *
-********************************/
+/*********************************
+* Name: Grace Brown               *
+* Last Edited: 25 Jan 26          *
+* Program: Rock Paper Scissors 	  *
+* Practices loops, general syntax *
+**********************************/
 
 #include <iostream>
 #include <algorithm>											// Added for transform function
