@@ -53,3 +53,5 @@ int main(){
 
     return 0;
 }
+
+//copy this for compilation tomorrow: g++-15 lab7.cpp -std=c++20 -fopenmp -D_GLIBCXX_PARALLEL -o parallel_v
