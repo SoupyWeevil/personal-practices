@@ -2,6 +2,7 @@
 # Created By    : Grace Brown     #
 # Create Date   : April 27, 2026  #
 # Last Edited   : April 27, 2026  #
+# Tut           : https://www.tutorialspoint.com/python_network_programming/python_smtp.htm
 ###################################
 
 import smtplib
