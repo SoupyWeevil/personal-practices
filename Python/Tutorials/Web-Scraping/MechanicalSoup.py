@@ -5,7 +5,7 @@
 # Tutorial   : https://realpython.com/python-web-scraping-practical-introduction/
 ###############
 
-import mechanicalsoup
+import mechanicalsoup, time
 # this library installs a HEADLESS BROWSER
 
 browser = mechanicalsoup.Browser() #creates a browser object
@@ -71,3 +71,37 @@ for link in links:
     address = base + link["href"]
     text = link.text
     print(f"{text}: {address}") 
+
+#############################################
+#INTERACTING WITH WEBSITES REAL TIME
+#This program will REPEATEDLY scrap the page for a new result
+#First thing to do: determine which element changes
+#using http://olympus.realpython.org/dice
+
+#NOTE: for the example in the tut, you can check that there is ONLY
+#ONE element with id="result"
+#Although id is supposed to be unique, ALWAYS check the element is uniquely identified
+
+#start by writing a program that opens the page, scrapes result, and prints to console
+browser = mechanicalsoup.Browser()
+page = browser.get("http://olympus.realpython.org/dice")
+tag = page.soup.select("#result")[0] #The # is a CSS ID selector to indicate "result" is an id value
+result = tag.text
+
+print(f"The result of your dice roll is: {result}")
+
+#to periodically get a new result, create a LOOP that LOADS the page each iteration!
+#NOTE: for this tut, they want four rolls EVERY ten seconds. Import time module
+
+for i in range(4):
+    browser = mechanicalsoup.Browser()
+    page = browser.get("http://olympus.realpython.org/dice")
+    tag = page.soup.select("#result")[0] #The # is a CSS ID selector to indicate "result" is an id value
+    result = tag.text
+    print(f"The result of your dice roll is: {result}")
+
+    if i < 3: #wait 10 seconds if this is NOT the last request
+        time.sleep(10) #stops for the ten seconds!
+
+#NOTE: Remember doing this to a website that does not allow scraping, you could get IP blocked lol
+

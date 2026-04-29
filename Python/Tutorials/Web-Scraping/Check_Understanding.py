@@ -5,6 +5,7 @@
 import re
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
+import mechanicalsoup
 
 def dionysusPractice():
     url = "http://olympus.realpython.org/profiles/dionysus"
@@ -24,13 +25,6 @@ def dionysusPractice():
         clean = rawtext.strip(" \r\n\t")    #Eliminate leading spaces and stuff
         print(clean)
 
-def ownPractice():
-    print()
-
-
-
-
-
 
 def beautifulSoupPractice():
     base_url = "http://olympus.realpython.org" #base url... you can create  RELATIVE URL by concatenating!
@@ -42,13 +36,24 @@ def beautifulSoupPractice():
         links = base_url + i["href"] #looks for everything with the base URL and the href attribute
         print(links)
 
+def mechanicalSoupPractice():
+    browser = mechanicalsoup.Browser()
+    url = "http://olympus.realpython.org/login"
+    page = browser.get(url)
+    login = page.soup
 
+    form = login.select("form")[0]
+    form.select("input")[0]["value"] = "zeus"
+    form.select("input")[1]["value"] = "ThunderDude"
 
+    profiles = browser.submit(form, page.url)
+
+    print(profiles.soup.title)
 
 def main():
     #dionysusPractice()
-    ownPractice()
     #beautifulSoupPractice()
-
+    mechanicalSoupPractice()
+    
 ######################### Initiates main
 main()
